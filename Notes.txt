@@ -1,0 +1,9 @@
+Well, I hope you now have a better understanding of the basic concept! Now let's move on to the last theoretical part. To achieve this project, you will have to understand and use new functions that allow to manage these computer signals:
+
+signal();
+sigemptyset(); 
+sigaddset();
+sigaction();
+kill();
+pause();
+sleep();
