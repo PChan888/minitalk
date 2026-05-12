@@ -1,19 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   client_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kaichan <kaichan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/11 21:35:23 by kaichan           #+#    #+#             */
-/*   Updated: 2026/05/11 23:52:02 by kaichan          ###   ########.fr       */
+/*   Created: 2026/05/13 00:02:52 by kaichan           #+#    #+#             */
+/*   Updated: 2026/05/13 00:08:50 by kaichan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-//Notes: need to remeber need type in PID(where) message should go.
-// pid need to read and send or confirm
-// 
-// message needs to be broken down
 
 #include "minitalk.h"
 

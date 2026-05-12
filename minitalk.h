@@ -6,20 +6,24 @@
 /*   By: kaichan <kaichan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 21:14:04 by kaichan           #+#    #+#             */
-/*   Updated: 2026/05/07 22:59:36 by kaichan          ###   ########.fr       */
+/*   Updated: 2026/05/12 01:06:50 by kaichan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINITALK_H
 # define MINITALK_H
 
-#include "libft/libft.h"
+# ifndef _POSIX_C_SOURCE
+#  define _POSIX_C_SOURCE 200809L
+# endif
+
+#include <sys/types.h>
 #include <signal.h>
 #include <unistd.h>
 #include <stdlib.h>
-#include <sys/types.h> // originally for pid_t to hold getpid();
 #include <stdio.h>
+#include "Libft/libft.h"
 
-
+#endif
 
 
