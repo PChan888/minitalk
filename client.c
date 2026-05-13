@@ -6,7 +6,7 @@
 /*   By: kaichan <kaichan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/11 21:35:23 by kaichan           #+#    #+#             */
-/*   Updated: 2026/05/11 23:52:02 by kaichan          ###   ########.fr       */
+/*   Updated: 2026/05/13 20:01:39 by kaichan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void send_chars(char c, int pid)
 			kill(pid, SIGUSR2);
 		else
 			kill(pid, SIGUSR1);
-		usleep(50);
+		usleep(650);
 		bit++;
 	}
 }

@@ -6,18 +6,18 @@
 /*   By: kaichan <kaichan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/07 17:15:09 by kaichan           #+#    #+#             */
-/*   Updated: 2026/05/12 01:03:50 by kaichan          ###   ########.fr       */
+/*   Updated: 2026/05/13 19:29:31 by kaichan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void putchar(int n)
+void ft_putnbr(int n)
 {
 	char c;
 
 	if(n >= 10)
-		putchar(n/10);
+		ft_putnbr(n/10);
 	c = (n % 10) + '0';
 	write(1, &c, 1);
 }
@@ -36,7 +36,10 @@ void handler(int sig)
 
 	if(bit == 8)
 	{
-		write(1, &c, 1);
+		if(c == '\0')
+			write(1, "\n", 1);
+		else 
+			write(1, &c, 1);
 		bit = 0;
 		c = 0;
 	}
@@ -54,7 +57,7 @@ int main()
 	sigaction(SIGUSR2, &sa, NULL);
 	
 	write(1, "PID: ", 5);
-	putchar(getpid());
+	ft_putnbr(getpid());
 	write(1, "\n", 1);
 
 	while(1)

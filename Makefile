@@ -6,52 +6,43 @@
 #    By: kaichan <kaichan@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/05/13 00:24:51 by kaichan           #+#    #+#              #
-#    Updated: 2026/05/13 00:26:03 by kaichan          ###   ########.fr        #
+#    Updated: 2026/05/13 18:52:33 by kaichan          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = minitalk.a
+NAME = minitalk
 
-CLIENT = client.c
+SERVER = server
 
-SERVER = server.c
+CLIENT = client
 
 CC = cc
 
 CFLAGS = -Wall -Wextra -Werror
+LIBFT_D = Libft
+LIBFT = $(LIBFT_D)/libft.a
 
-# remove and force remove
-RM = rm -f
+all: $(NAME)
 
-SRCS = ${PART1} ${PART2}
+$(NAME): $(SERVER) $(CLIENT)
 
-OBJS = $(SRCS:.c=.o)
+$(LIBFT):
+	make -C $(LIBFT_D)
 
-BONUS_OBJS = $(BONUS:.c=.o)
+$(SERVER): server.c $(LIBFT)
+	$(CC) $(CFLAGS) server.c -L$(LIBFT_D) -lft -o $(SERVER)
 
-# no need for -I. include path header in same folder.
-# derived from source .c
-.c:.o
-		${CC} ${CFLAG} -c $< -o ${<: .c=.o}
+$(CLIENT): client.c $(LIBFT)
+	$(CC) $(CFLAGS) client.c -L$(LIBFT_D) -lft -o $(CLIENT)
 
-# ${NAME}: ${OBJS} Runs only if .o files changed or ${NAME} missing.
-${NAME}: ${OBJS}
-	ar rcs ${NAME} ${OBJS}
-
-all: ${NAME}
-
-# bonus: Always runs, ignores whether ${NAME} exists.
-bonus:	${OBJS} ${BONUS_OBJS}
-		ar rcs ${NAME} ${OBJS} ${BONUS_OBJS}
-
-# just clean .o
 clean:
-	${RM} ${OBJS} ${BONUS_OBJS}
+	make -C $(LIBFT_D) clean
+	rm -f $(SERVER) $(CLIENT)
 
-# cleans all including .o and libft.a
 fclean: clean
-	${RM} ${NAME}
+	make -C $(LIBFT_D) fclean
 
-# rebuild the library cleans then remakes
 re: fclean all
+
+.PHONY: all clean fclean re
 
