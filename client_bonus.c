@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kaichan <kaichan@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/13 00:02:52 by kaichan           #+#    #+#             */
-/*   Updated: 2026/05/13 22:25:12 by kaichan          ###   ########.fr       */
+/*   Created: 2026/05/11 21:35:23 by kaichan           #+#    #+#             */
+/*   Updated: 2026/05/27 02:53:59 by kaichan          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,32 @@
 // pid need to read and send or confirm
 //
 // message needs to be broken down
+// pid validation to reduce weird crashes or errors
 
 #include "minitalk.h"
 
+volatile sig_atomic_t	g_receiver = 0;
+
+void	client_handler(int sig)
+{
+	if (sig == SIGUSR1)
+		g_receiver = 1;
+}
+
 void	send_chars(char c, int pid)
 {
-	int	bit;
+	unsigned int	bit;
 
 	bit = 0;
 	while (bit < 8)
 	{
+		g_receiver = 0;
 		if (((c >> bit) & 1) == 1)
 			kill(pid, SIGUSR2);
 		else
 			kill(pid, SIGUSR1);
-		usleep(500);
+		while (g_receiver == 0)
+			usleep(50);
 		bit++;
 	}
 }
@@ -42,7 +53,10 @@ int	main(int argc, char **argv)
 	if (argc != 3)
 		return (1);
 	pid = ft_atoi(argv[1]);
+	if (kill(pid, 0) == -1)
+		return (1);
 	i = 0;
+	signal(SIGUSR1, client_handler);
 	while (argv[2][i] != '\0')
 	{
 		c = argv[2][i];
