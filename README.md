@@ -19,7 +19,7 @@ make
 
 This will compile both the `client` and `server` executables and automatically build the required `libft` library.
 
-To clean object files:```                                  <--- DELETE THIS BLANK LINE
+To clean object files:
 
 
 ```bash
