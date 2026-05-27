@@ -1,6 +1,3 @@
----
-
-```markdown
 This project has been created as part of the 42 curriculum by Kaichan
 
 # Minitalk
@@ -22,7 +19,8 @@ make
 
 This will compile both the `client` and `server` executables and automatically build the required `libft` library.
 
-To clean object files:
+To clean object files:```                                  <--- DELETE THIS BLANK LINE
+
 
 ```bash
 make clean
@@ -142,4 +140,3 @@ AI was used to:
 All AI-assisted code was thoroughly reviewed, tested, and modified to ensure compliance with project requirements and the 42 Norm. Full understanding of the signal-based communication mechanism was maintained throughout the implementation.
 
 ***
-```
